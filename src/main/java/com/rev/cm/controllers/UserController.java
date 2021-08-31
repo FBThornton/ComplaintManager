@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rev.cm.models.Complaint;
 import com.rev.cm.models.User;
 import com.rev.cm.repos.UserRepository;
 
