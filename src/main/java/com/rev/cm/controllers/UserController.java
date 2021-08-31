@@ -35,7 +35,7 @@ public class UserController {
 	
 	@GetMapping(path="/{username}")
 	public User getById(@PathParam("username") String username) {
-		return userRepo.findByUsername(username);
+		return userRepo.findByUsername(username).orElseThrow(); // This needs refinement
 	}
 	
 	@GetMapping(path="/employee/{bool}")
