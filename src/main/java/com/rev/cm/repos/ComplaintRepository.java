@@ -16,6 +16,4 @@ public interface ComplaintRepository extends JpaRepository<Complaint, Integer> {
 	
 	public List<Complaint> findByStatus(Status status);
 	
-	public List<Complaint> findByTitleIgnoreCase(String title);
-	
 }

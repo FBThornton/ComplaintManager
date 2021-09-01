@@ -5,6 +5,7 @@ import java.util.List;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,49 +28,43 @@ public class ComplaintController {
 	ComplaintRepository compRepo;
 	@Autowired
 	UserRepository userRepo;
-	
-	@GetMapping(path="/all")
+
+	@GetMapping(path = "/all")
 	public List<Complaint> getAll() {
 		return compRepo.findAll();
 	}
-	
-	@GetMapping(path="/id/{id}")
+
+	@GetMapping(path = "/id/{id}")
 	public Complaint getById(@PathParam("id") int id) {
-		return compRepo.findById(id).orElseThrow(); // This needs refinement
+		return compRepo.findById(id).orElseThrow(
+				() -> new ResourceNotFoundException("The complaint with id:" + id + " could not be found"));
 	}
-	
-	@GetMapping(path="/status/{status}")
-	public List<Complaint> getById(@PathParam("id") Status status) {
+
+	@GetMapping(path = "/status/{status}")
+	public List<Complaint> getByStatus(@PathParam("id") Status status) {
 		return compRepo.findByStatus(status);
 	}
-	
-	/*
-	 * Need to sort out what kind of parameter to use, form or query
-	 */
-//	@GetMapping
-//	public List<Complaint> getById(String title) {
-//		return compRepo.findByTitleIgnoreCase(title);
-//	}
-	
-	@GetMapping(path="/user/{id}")
+
+	@GetMapping(path = "/user/{id}")
 	public List<Complaint> getByUser(@PathParam("id") int id) {
-		User user = userRepo.findById(id).orElseThrow(); // This needs refinement
+		User user = userRepo.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("The user with id:" + id + " could not be found"));
 		return compRepo.findByPoster(user);
 	}
-	
+
 	@PostMapping
 	public Complaint postComplaint(Complaint comp) {
 		return compRepo.save(comp);
 	}
-	
+
 	@PutMapping
 	public Complaint updateComplaint(Complaint comp) {
 		return compRepo.save(comp);
 	}
-	
-	@DeleteMapping(path="/id/{id}")
+
+	@DeleteMapping(path = "/id/{id}")
 	public void deleteComplaint(@PathParam("id") int id) {
 		compRepo.deleteById(id);
 	}
-	
+
 }
