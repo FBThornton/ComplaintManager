@@ -30,7 +30,7 @@ public class UserController {
 	@Autowired
 	UserRepository userRepo;
 
-	@GetMapping(path = "/all")
+	@GetMapping
 	public List<User> getAll() {
 		return userRepo.findAll();
 	}
