@@ -41,7 +41,7 @@ public class UserController {
 				.orElseThrow(() -> new ResourceNotFoundException("The user with id:" + id + " could not be found"));
 	}
 
-	@GetMapping(path = "/{username}")
+	@GetMapping(path = "/name/{username}")
 	public User getByUsername(@PathParam("username") String username) {
 		return userRepo.findByUsername(username).orElseThrow(
 				() -> new ResourceNotFoundException("The user with username:" + username + " could not be found"));
