@@ -23,7 +23,7 @@ import com.rev.cm.models.User;
 import com.rev.cm.repos.UserRepository;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(allowCredentials="true", origins="http://localhost:3000")
 @RequestMapping("api/user")
 public class UserController {
 

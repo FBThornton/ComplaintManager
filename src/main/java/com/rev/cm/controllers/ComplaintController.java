@@ -21,7 +21,7 @@ import com.rev.cm.repos.ComplaintRepository;
 import com.rev.cm.repos.UserRepository;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(allowCredentials="true", origins="http://localhost:3000")
 @RequestMapping("api/complaint")
 public class ComplaintController {
 	@Autowired
