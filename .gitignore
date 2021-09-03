@@ -14,6 +14,7 @@ buildNumber.properties
 .factorypath
 .project
 .settings/
+frontend/.vscode
 # dependencies
 frontend/node_modules
 
