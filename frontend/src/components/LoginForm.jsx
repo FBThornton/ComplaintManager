@@ -4,14 +4,14 @@ import { useForm } from 'react-hook-form';
 import { url } from './api';
 import axios from 'axios';
 
-export default function Form() {
+export default function Form({setUser}) {
   const { register, handleSubmit } = useForm();
   async function onSubmit(data) {
     axios.post(url + '/user/login', 
     { username: data.username, password: data.password}, 
     { withCredentials: true })
     .then((response) => {
-      console.log(response);
+      setUser(response.data);
     }, (error) => {
       console.log(error);
     });
