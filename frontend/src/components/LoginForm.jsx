@@ -3,6 +3,7 @@ import "../css/style.css";
 import { useForm } from 'react-hook-form';
 import { url } from './api';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export default function Form({setUser}) {
   const { register, handleSubmit } = useForm();
@@ -11,9 +12,14 @@ export default function Form({setUser}) {
     { username: data.username, password: data.password}, 
     { withCredentials: true })
     .then((response) => {
-      setUser(response.data);
+      if(response.status === 200){
+        setUser(response.data);
+      } else {
+        console.log(response.error);
+        toast.error(response.status);
+      }
     }, (error) => {
-      console.log(error);
+      toast.error(error);
     });
   }
 
