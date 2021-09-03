@@ -12,14 +12,10 @@ export default function Form({setUser}) {
     { username: data.username, password: data.password}, 
     { withCredentials: true })
     .then((response) => {
-      if(response.status === 200){
-        setUser(response.data);
-      } else {
-        console.log(response.error);
-        toast.error(response.status);
-      }
+      setUser(response.data);
+      toast("Welcome " + response.data.username)
     }, (error) => {
-      toast.error(error);
+      toast.error(error.message);
     });
   }
 
