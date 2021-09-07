@@ -65,10 +65,6 @@ export default function Display({user, setUser}) {
         });
     }
 
-    async function complaintConversion() {
-        
-    }
-
     return (
         <>
             <button onClick={handleLogout}>Logout</button>
