@@ -51,6 +51,10 @@ export default function Display({user, setUser}) {
         toast("Logged out");
     }
 
+    async function createComplaint() {
+        console.log("Why you complaining");
+    }
+
     async function getComplaints() {
         let uri;
         if(user.employee){
@@ -68,9 +72,7 @@ export default function Display({user, setUser}) {
     return (
         <>
             <button onClick={handleLogout}>Logout</button>
-            {
-                // TODO conditional statement for adding complaint
-            }
+            {!user.employee && <button onClick={createComplaint}>Add Complaint</button>}
             {complaints.map(complaint => (
             <ComplaintContainer completed={complaint.solution}>
                 <ComplaintTitle>
@@ -87,8 +89,9 @@ export default function Display({user, setUser}) {
                     </ComplaintSection>
                 </ComplaintBox>
                 <ComplaintBox>
-                    {// TODO conditional statements for buttons to edit/update solution
-                    }
+                    {user.employee 
+                    ? <button onClick={createComplaint}>Edit Solution</button>
+                    : <button onClick={createComplaint}>Edit Complaint</button>}
                 </ComplaintBox>
             </ComplaintContainer>
             ))}
