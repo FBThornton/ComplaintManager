@@ -4,16 +4,39 @@ import { url } from './api';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const ComplaintContainer = styled.div`
-    width: 60%;
-    height: 240px;
+const ComplaintContainer = styled.span`
+    height: 230px;
+    width: 45%;
     margin: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
     text-align: center;
     border-radius: 8px;
-    background: #e6e6e6;
+    background: ${({Status}) => 
+    Status === 'SUBMITTED' && '#ff9999' ||
+    Status === 'IN_PROGRESS' && '#ffffad' || 
+    Status === 'COMPLETED' && '#bbff99' || 
+    '50px'
+    };
 
-    display: flex;
-    flex-direction: column;
+    display: block;
+`
+
+const ComplaintTitle = styled.div`
+    width: 100%;
+    padding-bottom: 5px;
+    text-align: center;
+`
+
+const ComplaintBox = styled.div`
+    width: 100%;
+    justify-content: space-evenly;
+`
+
+const ComplaintSection = styled.span`
+    width: 40%;
+    display: inline-block;
 `
 
 export default function Display({user, setUser}) {
@@ -35,7 +58,7 @@ export default function Display({user, setUser}) {
         if(user.employee){
             uri = "/complaint/all";
         } else {
-            uri = "/complaint/" + user.id;
+            uri = "/complaint/user/" + user.id;
         }
 
         axios.get(url + uri)
@@ -51,13 +74,28 @@ export default function Display({user, setUser}) {
     return (
         <>
             <button onClick={handleLogout}>Logout</button>
+            {
+                // TODO conditional statement for adding complaint
+            }
             {complaints.map(complaint => (
-            <ComplaintContainer>
-                <h2>{complaint.title}</h2>
-                <p>{complaint.body}</p>
-                {complaint.solution
-                    ? <p>Solution: {complaint.solution}</p>
-                    : <p>Waiting for feedback</p>}
+            <ComplaintContainer Status={complaint.status}>
+                <ComplaintTitle>
+                    <h3>{complaint.title}</h3>
+                </ComplaintTitle>
+                <ComplaintBox>
+                    <ComplaintSection>
+                        Complaint: {complaint.body}
+                    </ComplaintSection>
+                    <ComplaintSection>
+                        {complaint.solution
+                            ? <p>Solution: {complaint.solution}</p>
+                            : <p>Waiting for feedback</p>}
+                    </ComplaintSection>
+                </ComplaintBox>
+                <ComplaintBox>
+                    {// TODO conditional statements for buttons to edit/update solution
+                    }
+                </ComplaintBox>
             </ComplaintContainer>
             ))}
         </>
