@@ -3,7 +3,6 @@ package com.rev.cm.controllers;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
@@ -11,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,19 +36,19 @@ public class UserController {
 	}
 
 	@GetMapping(path = "/id/{id}")
-	public User getById(@PathParam("id") int id) {
+	public User getById(@PathVariable("id") int id) {
 		return userRepo.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("The user with id:" + id + " could not be found"));
 	}
 
 	@GetMapping(path = "/name/{username}")
-	public User getByUsername(@PathParam("username") String username) {
+	public User getByUsername(@PathVariable("username") String username) {
 		return userRepo.findByUsername(username).orElseThrow(
 				() -> new ResourceNotFoundException("The user with username:" + username + " could not be found"));
 	}
 
 	@GetMapping(path = "/employee/{bool}")
-	public List<User> getByIsEmployee(@PathParam("bool") boolean bool) {
+	public List<User> getByIsEmployee(@PathVariable("bool") boolean bool) {
 		return userRepo.findByIsEmployee(bool);
 	}
 
@@ -97,7 +97,7 @@ public class UserController {
 	}
 
 	@DeleteMapping(path = "/id/{id}")
-	public void deleteUser(@PathParam("id") int id) {
+	public void deleteUser(@PathVariable("id") int id) {
 		userRepo.deleteById(id);
 	}
 }

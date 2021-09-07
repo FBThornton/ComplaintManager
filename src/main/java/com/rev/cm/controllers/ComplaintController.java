@@ -9,6 +9,7 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,18 +36,18 @@ public class ComplaintController {
 	}
 
 	@GetMapping(path = "/id/{id}")
-	public Complaint getById(@PathParam("id") int id) {
+	public Complaint getById(@PathVariable("id") int id) {
 		return compRepo.findById(id).orElseThrow(
 				() -> new ResourceNotFoundException("The complaint with id:" + id + " could not be found"));
 	}
 
 	@GetMapping(path = "/status/{status}")
-	public List<Complaint> getByStatus(@PathParam("id") Status status) {
+	public List<Complaint> getByStatus(@PathVariable("id") Status status) {
 		return compRepo.findByStatus(status);
 	}
 
 	@GetMapping(path = "/user/{id}")
-	public List<Complaint> getByUser(@PathParam("id") int id) {
+	public List<Complaint> getByUser(@PathVariable("id") int id) {
 		User user = userRepo.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("The user with id:" + id + " could not be found"));
 		return compRepo.findByPoster(user);
