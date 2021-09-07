@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 const ComplaintContainer = styled.span`
     height: 230px;
     width: 45%;
-    margin: 3%;
+    margin: 20px;
     margin-left: auto;
     margin-right: auto;
     padding: 10px;
@@ -19,6 +19,16 @@ const ComplaintContainer = styled.span`
     };
 
     display: block;
+`
+
+const ButtonBox = styled.div`
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
 `
 
 const ComplaintTitle = styled.div`
@@ -71,8 +81,10 @@ export default function Display({user, setUser}) {
 
     return (
         <>
-            <button onClick={handleLogout}>Logout</button>
-            {!user.employee && <button onClick={createComplaint}>Add Complaint</button>}
+            <ButtonBox>
+                <button onClick={handleLogout}>Logout</button>
+                {!user.employee && <button onClick={createComplaint}>Add Complaint</button>}
+            </ButtonBox>
             {complaints.map(complaint => (
             <ComplaintContainer completed={complaint.solution}>
                 <ComplaintTitle>
