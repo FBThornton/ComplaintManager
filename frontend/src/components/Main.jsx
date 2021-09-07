@@ -12,7 +12,7 @@ export default function Login() {
     { withCredentials: true })
     .then((response) => {
       setUser(response.data);
-    })}, []);
+  })}, []);
 
   return (user ?
     <div>
