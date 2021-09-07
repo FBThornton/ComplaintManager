@@ -13,11 +13,9 @@ const ComplaintContainer = styled.span`
     padding: 10px;
     text-align: center;
     border-radius: 8px;
-    background: ${({Status}) => 
-    Status === 'SUBMITTED' && '#ff9999' ||
-    Status === 'IN_PROGRESS' && '#ffffad' || 
-    Status === 'COMPLETED' && '#bbff99' || 
-    '50px'
+    background: ${({completed}) => 
+    completed != null && '#bbff99' ||
+    '#ffffad'
     };
 
     display: block;
@@ -78,7 +76,7 @@ export default function Display({user, setUser}) {
                 // TODO conditional statement for adding complaint
             }
             {complaints.map(complaint => (
-            <ComplaintContainer Status={complaint.status}>
+            <ComplaintContainer completed={complaint.solution}>
                 <ComplaintTitle>
                     <h3>{complaint.title}</h3>
                 </ComplaintTitle>

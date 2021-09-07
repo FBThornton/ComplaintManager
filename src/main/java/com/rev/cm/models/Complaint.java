@@ -27,9 +27,6 @@ public class Complaint {
 	private int id;
 	
 	@Column(nullable=false)
-	private Status status;
-	
-	@Column(nullable=false)
 	private String title;
 	
 	@Column(length=2000)

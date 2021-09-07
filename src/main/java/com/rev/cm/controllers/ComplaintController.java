@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rev.cm.models.Complaint;
-import com.rev.cm.models.Status;
 import com.rev.cm.models.User;
 import com.rev.cm.repos.ComplaintRepository;
 import com.rev.cm.repos.UserRepository;
@@ -39,11 +38,6 @@ public class ComplaintController {
 	public Complaint getById(@PathVariable("id") int id) {
 		return compRepo.findById(id).orElseThrow(
 				() -> new ResourceNotFoundException("The complaint with id:" + id + " could not be found"));
-	}
-
-	@GetMapping(path = "/status/{status}")
-	public List<Complaint> getByStatus(@PathVariable("id") Status status) {
-		return compRepo.findByStatus(status);
 	}
 
 	@GetMapping(path = "/user/{id}")
