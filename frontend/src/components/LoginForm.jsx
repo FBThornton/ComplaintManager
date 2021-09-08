@@ -13,7 +13,7 @@ export default function Form({setUser}) {
     { withCredentials: true })
     .then((response) => {
       setUser(response.data);
-      toast("Welcome " + response.data.username)
+      toast.success("Welcome " + response.data.username)
     }, (error) => {
       toast.error(error.message);
     });

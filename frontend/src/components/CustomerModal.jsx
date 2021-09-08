@@ -28,7 +28,7 @@ export default function CustomerModal({complaint}) {
     return (
         <>
       <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
+        Edit complaint
       </Button>
 
       <Modal show={show} onHide={handleClose}>
