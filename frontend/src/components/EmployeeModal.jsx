@@ -23,6 +23,7 @@ export default function EmployeeModal({complaint, getComplaints}) {
           poster: complaint.poster
         });
         getComplaints();
+        handleClose();
     }
 
     return (

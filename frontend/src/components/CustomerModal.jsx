@@ -23,6 +23,7 @@ export default function CustomerModal({complaint, getComplaints}) {
           poster: complaint.poster
         });
         getComplaints();
+        handleClose();
     }
 
     return (
@@ -33,7 +34,7 @@ export default function CustomerModal({complaint, getComplaints}) {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Edit Complaint</Modal.Title>
+          <Modal.Title>{complaint.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
         <form onSubmit={handleSubmit(updateComplaint)}>
