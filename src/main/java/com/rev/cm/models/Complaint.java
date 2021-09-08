@@ -21,12 +21,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Complaint {
-
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
-	@Column(nullable=false)
+
 	private String title;
 	
 	@Column(length=2000)
@@ -36,6 +35,6 @@ public class Complaint {
 	private String solution;
 	
 	@ManyToOne
-	@JoinColumn(name="user_id", nullable=false)
+	@JoinColumn(name="user_id")
 	private User poster;
 }

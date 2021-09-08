@@ -23,3 +23,4 @@ frontend/coverage
 
 # production
 frontend/build
+.metadata

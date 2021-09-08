@@ -3,6 +3,10 @@ import styled from 'styled-components'
 import { url } from './api';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import CustomerModal from './CustomerModal';
+
+
+
 
 const ComplaintContainer = styled.span`
     height: 230px;
@@ -13,9 +17,11 @@ const ComplaintContainer = styled.span`
     padding: 10px;
     text-align: center;
     border-radius: 8px;
-    background: ${({completed}) => 
-    completed != null && '#bbff99' ||
-    '#ffffad'
+    background: ${({Status}) => 
+    Status === 'SUBMITTED' && '#ff9999' ||
+    Status === 'IN_PROGRESS' && '#ffffad' || 
+    Status === 'COMPLETED' && '#bbff99' || 
+    '50px'
     };
 
     display: block;
@@ -79,6 +85,10 @@ export default function Display({user, setUser}) {
         });
     }
 
+    async function complaintConversion() {
+        
+    }
+
     return (
         <>
             <ButtonBox>
@@ -86,7 +96,7 @@ export default function Display({user, setUser}) {
                 {!user.employee && <button onClick={createComplaint}>Add Complaint</button>}
             </ButtonBox>
             {complaints.map(complaint => (
-            <ComplaintContainer completed={complaint.solution}>
+            <ComplaintContainer Status={complaint.status}>
                 <ComplaintTitle>
                     <h3>{complaint.title}</h3>
                 </ComplaintTitle>
@@ -104,6 +114,7 @@ export default function Display({user, setUser}) {
                     {user.employee 
                     ? <button onClick={createComplaint}>Edit Solution</button>
                     : <button onClick={createComplaint}>Edit Complaint</button>}
+                    <CustomerModal complaint={complaint} />
                 </ComplaintBox>
             </ComplaintContainer>
             ))}

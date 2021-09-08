@@ -12,5 +12,5 @@ import com.rev.cm.models.User;
 public interface ComplaintRepository extends JpaRepository<Complaint, Integer> {
 	
 	public List<Complaint> findByPoster(User user);
-	
+
 }
