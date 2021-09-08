@@ -9,12 +9,9 @@ import Modal from 'react-bootstrap/Modal';
 export default function CustomerModal({complaint}) {
     const [show, setShow] = useState(false);
 
-
     const [newComp, setComp] = useState();
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-    
 
     const { register, handleSubmit } = useForm();
 
@@ -28,7 +25,6 @@ export default function CustomerModal({complaint}) {
         });
     }
 
-  
     return (
         <>
       <Button variant="primary" onClick={handleShow}>
@@ -49,7 +45,4 @@ export default function CustomerModal({complaint}) {
       </Modal>
     </>
     );
-
-
-
 }
