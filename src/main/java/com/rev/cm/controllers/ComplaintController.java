@@ -59,7 +59,6 @@ public class ComplaintController {
 
 	@PutMapping
 	public Complaint updateComplaint(@RequestBody Complaint comp) {
-		log.error("comp id " + comp.getId() + " " + comp.getBody() + comp.getTitle() + comp.getSolution());
 		Complaint compIn = compRepo.findById(comp.getId()).get();
 		compIn.setBody(comp.getBody());
 		return compRepo.save(comp);
