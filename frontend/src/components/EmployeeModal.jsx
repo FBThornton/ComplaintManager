@@ -21,9 +21,10 @@ export default function EmployeeModal({complaint, getComplaints}) {
           body: complaint.body,
           solution: data.solution,
           poster: complaint.poster
+        }).then((response) => {
+          getComplaints();
+          handleClose();
         });
-        getComplaints();
-        handleClose();
     }
 
     return (

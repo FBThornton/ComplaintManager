@@ -21,9 +21,10 @@ export default function CustomerModal({complaint, getComplaints}) {
           body: data.body,
           solution: null,
           poster: complaint.poster
+        }).then((response) => {
+          getComplaints();
+          handleClose();
         });
-        getComplaints();
-        handleClose();
     }
 
     return (
