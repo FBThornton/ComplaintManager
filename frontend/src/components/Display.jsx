@@ -5,9 +5,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import CustomerModal from './CustomerModal';
 import EmployeeModal from './EmployeeModal';
-
-
-
+import Button from 'react-bootstrap/Button';
 
 const ComplaintContainer = styled.span`
     height: 230px;
@@ -19,8 +17,7 @@ const ComplaintContainer = styled.span`
     text-align: center;
     border-radius: 8px;
     background: ${({completed}) => 
-    completed != null && '#bbff99' ||
-    '#ffffad'
+    completed ? '#bbff99' : '#ffffad'
     };
 
     display: block;
@@ -87,8 +84,8 @@ export default function Display({user, setUser}) {
     return (
         <>
             <ButtonBox>
-                <button onClick={handleLogout}>Logout</button>
-                {user.employee || <button onClick={createComplaint}>Add Complaint</button>}
+                <Button onClick={handleLogout}>Logout</Button>
+                {user.employee || <Button onClick={createComplaint}>Add Complaint</Button>}
             </ButtonBox>
             {complaints.map(complaint => (
             <ComplaintContainer completed={complaint.solution}>
