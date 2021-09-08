@@ -22,6 +22,13 @@ import lombok.Setter;
 @Setter
 public class Complaint {
 	
+	public Complaint(String title, String body, String solution, User poster) {
+		this.title = title;
+		this.body = body;
+		this.solution = solution;
+		this.poster = poster;
+	}
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;

@@ -53,7 +53,7 @@ public class ComplaintController {
 	}
 
 	@PostMapping
-	public Complaint postComplaint(Complaint comp) {
+	public Complaint postComplaint(@RequestBody Complaint comp) {
 		return compRepo.save(comp);
 	}
 

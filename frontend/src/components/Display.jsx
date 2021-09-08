@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import CustomerModal from './CustomerModal';
 import EmployeeModal from './EmployeeModal';
 import Button from 'react-bootstrap/Button';
+import AddComplaintModal from "./AddComplaintModal";
 
 const ComplaintContainer = styled.span`
     height: 230px;
@@ -85,7 +86,7 @@ export default function Display({user, setUser}) {
         <>
             <ButtonBox>
                 <Button onClick={handleLogout}>Logout</Button>
-                {user.employee || <Button onClick={createComplaint}>Add Complaint</Button>}
+                {user.employee || <AddComplaintModal user={user} getComplaints={getComplaints}/>}
             </ButtonBox>
             {complaints.map(complaint => (
             <ComplaintContainer completed={complaint.solution}>
