@@ -4,6 +4,7 @@ import { url } from './api';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import CustomerModal from './CustomerModal';
+import EmployeeModal from './EmployeeModal';
 
 
 
@@ -106,7 +107,7 @@ export default function Display({user, setUser}) {
                 </ComplaintBox>
                 <ComplaintBox>
                     {user.employee 
-                    ? <button onClick={createComplaint}>Edit Solution</button>
+                    ? <EmployeeModal complaint={complaint} />
                     : <CustomerModal complaint={complaint} />}
                 </ComplaintBox>
             </ComplaintContainer>
