@@ -85,15 +85,11 @@ export default function Display({user, setUser}) {
         });
     }
 
-    async function complaintConversion() {
-        
-    }
-
     return (
         <>
             <ButtonBox>
                 <button onClick={handleLogout}>Logout</button>
-                {!user.employee && <button onClick={createComplaint}>Add Complaint</button>}
+                {user.employee || <button onClick={createComplaint}>Add Complaint</button>}
             </ButtonBox>
             {complaints.map(complaint => (
             <ComplaintContainer Status={complaint.status}>
