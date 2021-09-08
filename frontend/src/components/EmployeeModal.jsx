@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 
-export default function EmployeeModal({complaint}) {
+export default function EmployeeModal({complaint, getComplaints}) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -22,6 +22,7 @@ export default function EmployeeModal({complaint}) {
           solution: data.solution,
           poster: complaint.poster
         });
+        getComplaints();
     }
 
     return (

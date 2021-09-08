@@ -105,11 +105,9 @@ export default function Display({user, setUser}) {
                             : <p>Waiting for feedback</p>}
                     </ComplaintSection>
                 </ComplaintBox>
-                <ComplaintBox>
-                    {user.employee 
-                    ? <EmployeeModal complaint={complaint} />
-                    : <CustomerModal complaint={complaint} />}
-                </ComplaintBox>
+                {user.employee 
+                ? <EmployeeModal complaint={complaint} getComplaints={getComplaints}/>
+                : <CustomerModal complaint={complaint} getComplaints={getComplaints}/>}
             </ComplaintContainer>
             ))}
         </>

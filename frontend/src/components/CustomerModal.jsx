@@ -6,10 +6,9 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 
-export default function CustomerModal({complaint}) {
+export default function CustomerModal({complaint, getComplaints}) {
     const [show, setShow] = useState(false);
 
-    const [newComp, setComp] = useState();
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -20,9 +19,10 @@ export default function CustomerModal({complaint}) {
           id: complaint.id,
           title: complaint.title,
           body: data.body,
-          solution: complaint.solution,
+          solution: null,
           poster: complaint.poster
         });
+        getComplaints();
     }
 
     return (
