@@ -9,8 +9,8 @@ import Button from 'react-bootstrap/Button';
 import AddComplaintModal from "./AddComplaintModal";
 
 const ComplaintContainer = styled.span`
-    height: 230px;
-    width: 45%;
+    height: 180px;
+    width: 40%;
     margin: 20px;
     margin-left: auto;
     margin-right: auto;
