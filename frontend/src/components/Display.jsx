@@ -64,10 +64,6 @@ export default function Display({user, setUser}) {
         toast("Logged out");
     }
 
-    async function createComplaint() {
-        console.log("Why you complaining");
-    }
-
     async function getComplaints() {
         let uri;
         if(user.employee){
